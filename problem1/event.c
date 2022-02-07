@@ -6,6 +6,8 @@ Event *CreateEvent(char *name)
 {
     //Event *event = NULL;
     Event *event = malloc(sizeof(Event));
+
+    
     
     return event;
 }
