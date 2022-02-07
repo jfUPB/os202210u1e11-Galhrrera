@@ -6,6 +6,8 @@
 EventList *CreateEventList(void)
 {
     EventList *eventList = NULL;
+    //Se debe usar el malloc para crear la lista enlazada
+    //para el ejercicio se creará una lista enlazada de hasta 10 eventos
 
     return eventList;
 }

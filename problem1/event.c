@@ -4,7 +4,12 @@
 
 Event *CreateEvent(char *name)
 {
-    Event *event = NULL;
+    //Event *event = NULL;
+    Event *event = malloc(sizeof(Event));
+
+    //malloc con la cantidad de memoria que ocupa el evento
+
+    
     return event;
 }
 
