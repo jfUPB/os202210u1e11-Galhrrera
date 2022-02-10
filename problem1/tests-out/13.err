@@ -1,1 +1,1 @@
-../tester/run-tests.sh: línea 27:  4505 Violación de segmento  ./main < tests/13.in
+../tester/run-tests.sh: línea 27:  5199 Violación de segmento  ./main < tests/13.in
