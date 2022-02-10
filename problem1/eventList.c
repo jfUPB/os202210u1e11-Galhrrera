@@ -64,22 +64,11 @@ void AddEvent(EventList *this, Event *event)
         this->last = event;
         this->isEmpty= 1;
     }
-    /*
-    if (this->isEmpty == 0)
-    {
-        this->head = event;
-        this->last = event;
-        this->isEmpty = 1;
-    }
-    else
-    {
-        this->last->next = event;
-        this->last = event;
-    }*/
 }
 
 void RemoveEvent(EventList *this, char *name)
 {
+    int contador = 0;
     Event *a = this->head;
     if (this->isEmpty == 0)
     {
@@ -99,18 +88,28 @@ void RemoveEvent(EventList *this, char *name)
 
             else if (*(a->next->eventName + 2) == *(name + 2))
             {
+
                 a->next = a->next->next;
+
 
                 break;
             }
+            else{
+                contador = contador+1;
+                if(contador==7){
+                    return;
+                }
+            }
 
             a = a->next;
+            contador = contador+1;
         }
         if (this->head==NULL)
         {
             this->isEmpty = 0;
         }
     }
+    //free(&contador);
 }
 
 void ListEvents(EventList *this)
