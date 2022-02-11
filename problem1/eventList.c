@@ -12,7 +12,6 @@ EventList *CreateEventList(void)
 
 void DestroyEventList(EventList *this)
 {
-
     free(this);
 }
 
@@ -33,12 +32,14 @@ Event *SearchEvent(EventList *this, char *name)
             if (*(a->eventName + 2) == *(name + 2) && *(a->eventName + 3) == *(name+3))
             {
                 return a;
-                
             }
 
             a = a->next;
         }
     }
+
+    DestroyEvent(a);
+
     return NULL;
 }
 
@@ -64,12 +65,18 @@ void AddEvent(EventList *this, Event *event)
         this->last = event;
         this->isEmpty= 1;
     }
+    DestroyEvent(a);
 }
 
 void RemoveEvent(EventList *this, char *name)
 {
-    int contador = 0;
+    
     Event *a = this->head;
+
+    Event *t = SearchEvent(this, name);
+
+    if (t == NULL)
+        return;
     if (this->isEmpty == 0)
     {
         return;
@@ -80,6 +87,8 @@ void RemoveEvent(EventList *this, char *name)
        
         while (a != NULL)
         {
+            
+            
             if (*(this->head->eventName + 2) == *(name + 2))
             {
                 this->head = this->head->next;
@@ -88,28 +97,18 @@ void RemoveEvent(EventList *this, char *name)
 
             else if (*(a->next->eventName + 2) == *(name + 2))
             {
-
                 a->next = a->next->next;
-
-
                 break;
-            }
-            else{
-                contador = contador+1;
-                if(contador==7){
-                    return;
-                }
             }
 
             a = a->next;
-            contador = contador+1;
+            
         }
         if (this->head==NULL)
         {
             this->isEmpty = 0;
         }
     }
-    //free(&contador);
 }
 
 void ListEvents(EventList *this)
@@ -118,6 +117,7 @@ void ListEvents(EventList *this)
     
     if (this->isEmpty == 0)
         printf("empty\n");
+        
     else
     {
         while (a != NULL)
@@ -126,4 +126,5 @@ void ListEvents(EventList *this)
             a = a->next;
         }
     }
+    DestroyEvent(a);
 }
